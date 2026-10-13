@@ -8,6 +8,8 @@ Communication is handled directly via the serial interface of the embedded contr
 
 **[Download & installation](#installation-and-startup-windows)**
 
+![CanyonGlow v1.0 control view in dark mode](picture/control-dark-en.png)
+
 ---
 
 ## Supported Hardware
@@ -104,6 +106,13 @@ Each zone supports the following effects independently:
 - Save and clear the log; translatable application messages follow the selected
   language, including existing entries. Raw data remains unchanged.
 
+<details>
+<summary>Show the log view</summary>
+
+![CanyonGlow v1.0 log view in dark mode](picture/log-dark-en.png)
+
+</details>
+
 ---
 
 ## Installation and startup (Windows)
@@ -159,10 +168,9 @@ them. The global ON/OFF button and **Factory Reset** act on the controller immed
 
 ## Updating and uninstalling
 
-To update, run the new setup. The existing installation folder is reused;
-previous application shortcuts are replaced with CanyonGlow shortcuts during
-the rename. Start Menu and desktop shortcuts use the Documents folder as
-their working directory.
+To update, run the new setup. The existing installation folder is reused.
+Start Menu and desktop shortcuts use the Documents folder as their working
+directory.
 
 Uninstall a setup installation through Apps in Windows Settings. Additional
 profile files are not deleted. The portable version does not require

@@ -40,9 +40,8 @@ Ausgaben für v1.0:
 - `dist\CanyonGlow-v1.0-SHA256SUMS.txt` — Prüfsummen der erzeugten Dateien.
 
 Die Setup-Version wird automatisch aus `APP_VERSION` gelesen. Ein neues Setup
-aktualisiert dieselbe Installation, auch nach der Umbenennung zu CanyonGlow.
-Dabei bleiben der bisherige Installationsordner und vorhandene Profile erhalten;
-alte Programmverknüpfungen werden durch CanyonGlow-Verknüpfungen ersetzt.
+aktualisiert die bestehende Installation. Der Installationsordner und vorhandene
+Profile bleiben erhalten.
 Der Installer löscht keine zusätzlich angelegten Profil-Dateien; Startmenü- und
 Desktop-Verknüpfungen verwenden den Dokumente-Ordner als Arbeitsverzeichnis.
 Der serielle Gerätetreiber wird nicht mitinstalliert. Die kurze Anleitung

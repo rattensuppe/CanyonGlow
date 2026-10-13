@@ -164,9 +164,8 @@ direkt auf den Controller.
 ## Aktualisieren und Deinstallieren
 
 Für ein Update das neue Setup ausführen. Der vorhandene Installationsordner
-wird weiterverwendet; bisherige Programmverknüpfungen werden bei der
-Umbenennung durch CanyonGlow-Verknüpfungen ersetzt. Startmenü- und
-Desktop-Verknüpfungen verwenden den Dokumente-Ordner als Arbeitsverzeichnis.
+wird weiterverwendet. Startmenü- und Desktop-Verknüpfungen verwenden den
+Dokumente-Ordner als Arbeitsverzeichnis.
 
 Die Setup-Installation lässt sich über die Windows-Einstellungen unter Apps
 deinstallieren. Zusätzlich angelegte Profil-Dateien werden nicht gelöscht.

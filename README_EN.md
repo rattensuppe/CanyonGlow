@@ -159,10 +159,9 @@ them. The global ON/OFF button and **Factory Reset** act on the controller immed
 
 ## Updating and uninstalling
 
-To update, run the new setup. The existing installation folder is reused;
-previous application shortcuts are replaced with CanyonGlow shortcuts during
-the rename. Start Menu and desktop shortcuts use the Documents folder as
-their working directory.
+To update, run the new setup. The existing installation folder is reused.
+Start Menu and desktop shortcuts use the Documents folder as their working
+directory.
 
 Uninstall a setup installation through Apps in Windows Settings. Additional
 profile files are not deleted. The portable version does not require

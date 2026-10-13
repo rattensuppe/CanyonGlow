@@ -39,9 +39,8 @@ Outputs for v1.0:
 - `dist\CanyonGlow-v1.0-SHA256SUMS.txt` — checksums of the generated files.
 
 The installer version is read automatically from `APP_VERSION`. A new setup
-updates the same installation, including the rename to CanyonGlow.
-The previous installation folder and existing profiles are retained;
-old application shortcuts are replaced with CanyonGlow shortcuts.
+updates the existing installation. The installation folder and existing
+profiles are retained.
 The installer does not remove additional profile files; Start Menu and desktop
 shortcuts use the Documents folder as their working directory.
 The serial device driver is not installed by setup. Both the installer and ZIP
