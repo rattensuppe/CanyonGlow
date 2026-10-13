@@ -134,8 +134,13 @@ auswählbar. Bei Updates übernimmt das Setup die bisher verwendete Installation
 [Prüfsummen (SHA-256)](https://github.com/rattensuppe/CanyonGlow/releases/download/v1.0/CanyonGlow-v1.0-SHA256SUMS.txt)
 · [Versionshinweise](https://github.com/rattensuppe/CanyonGlow/releases/tag/v1.0)
 
-Der serielle Gerätetreiber muss vorhanden sein. Hinweise zu Windows Update und
-zum offiziellen Prolific-Download stehen in [drivers/README_DE.txt](drivers/README_DE.txt).
+Der RGB-Controller verwendet eine **Prolific-PL2303-USB-zu-Seriell-Brücke**.
+Beim getesteten NUC 11 Extreme zeigt Windows sie im Geräte-Manager unter
+**Anschlüsse (COM & LPT)** als **Prolific PL2303GD USB Serial COM Port** an
+(Treiberanbieter: **Prolific**). Die zugewiesene COM-Portnummer steht hinter dem Namen.
+Der serielle Treiber muss vorhanden sein. Falls der Controller fehlt, zuerst
+Windows Update prüfen; die Anleitung und den offiziellen Download für den
+**Prolific-PL2303-Windows-Treiber** enthält [drivers/README_DE.txt](drivers/README_DE.txt).
 
 Beim Start sucht das Tool nach dem Prolific/PL2303-Controller und liest dessen
 Status. Nach erfolgreicher Erkennung werden die Zoneneinstellungen aus dem Gerät
@@ -208,8 +213,8 @@ gespeichert. Die bestehenden JSON-Profile bleiben nutzbar.
 ## Serielle Kommunikation
 
 Der Controller kommuniziert über einen virtuellen COM-Port (USB).
-Die tatsächliche Portnummer wird vom Betriebssystem vergeben und kann von `COM3`
-abweichen. `COM3` ist nur ein Fallback-Wert, falls keine Ports erkannt werden.
+Windows vergibt die Portnummer. CanyonGlow sucht den Controller automatisch;
+maßgeblich ist der COM-Port, der auf deinem System für das Prolific-Gerät angezeigt wird.
 
 Nach jedem Öffnen des Ports wartet die Software **2 Sekunden** vor dem ersten
 Befehl. Zwischen einzelnen Befehlen liegen **0,1 Sekunden**. Ein Sendevorgang kann
