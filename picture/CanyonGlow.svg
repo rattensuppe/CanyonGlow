@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<!-- Copyright (c) 2026 rattensuppe; SPDX-License-Identifier: MIT -->
+<rect x="12" y="12" width="232" height="232" rx="48" fill="#101c30"/>
+<polygon points="48,62 101,88 94,145 126,203 73,180 48,127" fill="#247d9b"/>
+<polygon points="48,62 101,88 88,108 63,95" fill="#45c7dc"/>
+<polygon points="208,62 160,92 173,136 152,178 130,203 189,180 208,126" fill="#414c9a"/>
+<polygon points="208,62 160,92 167,113 193,95" fill="#7883dc"/>
+<polyline points="125,58 116,111 141,149 121,195" fill="none" stroke="#57edb6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="139,62 130,111 155,149 135,197" fill="none" stroke="#54cfff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="153,66 144,111 169,149 149,199" fill="none" stroke="#fa6aa9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
