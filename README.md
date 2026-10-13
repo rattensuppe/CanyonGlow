@@ -37,10 +37,12 @@ Intel NUC Software Studio is not required.
 
 The packages are currently unsigned.
 
-The RGB controller and its **USB-to-serial connection are already built into
-the NUC**; no additional controller or USB adapter is needed. Windows Update
-normally supplies the required Prolific serial driver, so it is usually already
-installed on an up-to-date Windows system.
+CanyonGlow communicates with the **built-in RGB controller** via its
+USB-to-serial connection. This is the same controller used by
+[Intel NUC Software Studio](https://www.asus.com/au/support/faq/1056240/),
+whose support ended in 2024. Windows Update normally supplies the required
+Prolific serial driver, so it is usually already installed on an up-to-date
+Windows system.
 
 On the tested NUC 11 Extreme, Device Manager lists the built-in connection as
 **Prolific PL2303GD USB Serial COM Port** under **Ports (COM & LPT)**
