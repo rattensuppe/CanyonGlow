@@ -1,0 +1,43 @@
+{
+  "name": "Default Green",
+  "all_enabled": true,
+  "pulse_train_hues": [
+    0,
+    96,
+    160
+  ],
+  "zones": {
+    "Skull": {
+      "enabled": true,
+      "pattern": "Solid",
+      "brightness": 5,
+      "frequency": 0,
+      "rainbow": false,
+      "custom_hue": 96
+    },
+    "Bottom Left": {
+      "enabled": true,
+      "pattern": "Solid",
+      "brightness": 5,
+      "frequency": 0,
+      "rainbow": false,
+      "custom_hue": 96
+    },
+    "Bottom Right": {
+      "enabled": true,
+      "pattern": "Solid",
+      "brightness": 5,
+      "frequency": 0,
+      "rainbow": false,
+      "custom_hue": 96
+    },
+    "Bottom Front": {
+      "enabled": true,
+      "pattern": "Solid",
+      "brightness": 5,
+      "frequency": 0,
+      "rainbow": false,
+      "custom_hue": 96
+    }
+  }
+}

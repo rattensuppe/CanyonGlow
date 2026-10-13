@@ -1,0 +1,86 @@
+CanyonGlow - third-party notices
+
+Original CanyonGlow code, documentation and the new geometric CanyonGlow
+icon are available under the MIT license in LICENSE, Copyright (c) 2026
+rattensuppe. Third-party components retain their original licenses below.
+The project license does not grant rights to manufacturer artwork or logos.
+
+nuc_rgb by Alvin Zhu
+-------------------
+Project: https://github.com/AlvinZhu/nuc_rgb
+License: MIT, Copyright (c) 2022 Alvin Zhu.
+Full notice: licenses/nuc_rgb-LICENSE.txt
+CanyonGlow uses this project as a reference for serial commands, effect and
+colour mappings, and the controller status field order. The original CLI
+and its executable are not shipped as part of CanyonGlow.
+
+pyserial 3.5
+------------
+Project: https://github.com/pyserial/pyserial
+License: BSD-3-Clause.
+Full notice: licenses/pyserial-LICENSE.txt
+Used for communication with the serial controller.
+
+Python 3.12.10 and the bundled native runtime
+-------------------------------------------
+Project: https://www.python.org/
+The Windows packages contain the unmodified Python runtime and selected
+standard-library modules. licenses/Python-LICENSE.txt in the release packages
+is the combined license file from the official Windows Python distribution.
+It includes the PSF and historical Python licenses, Microsoft redistribution
+terms, bzip2 and libffi notices, Apache 2.0 text, and Tcl/Tk-related notices.
+Bundled Microsoft runtime files retain their original notices and are used
+on Windows only; they are not relicensed as CanyonGlow source code.
+
+Tcl/Tk 8.6.15
+-------------
+Projects: https://www.tcl-lang.org/ and https://github.com/tcltk/tcl
+Permissive Tcl/Tk license terms apply; preserve the original notices.
+The complete notices are included in licenses/Python-LICENSE.txt in release
+packages; the Tk notice is also present as licenses/Tk-LICENSE.txt.
+
+OpenSSL 3.0.16 / libcrypto
+-------------------------
+Project: https://github.com/openssl/openssl/tree/openssl-3.0.16
+License: Apache-2.0. The Apache license text is included in the combined
+licenses/Python-LICENSE.txt distributed with the Windows release.
+The OpenSSL binary retains its original copyright metadata.
+
+zlib 1.3.1
+----------
+Project: https://github.com/madler/zlib/tree/v1.3.1
+License: zlib. Full notice: licenses/zlib-LICENSE.txt.
+The unmodified zlib DLL is part of the Tcl/Tk runtime.
+
+PyInstaller 6.21.0
+-----------------
+Project: https://pyinstaller.org/
+GPL-2.0-or-later with the PyInstaller bootloader exception; specified runtime
+files use Apache-2.0. The exception permits an application bundle to use its
+own license, subject to the licenses of its dependencies. The complete
+PyInstaller notice is included as licenses/pyinstaller-COPYING.txt in the
+release packages. PyInstaller itself has not been modified.
+
+Inno Setup 7.1.0
+----------------
+Project: https://jrsoftware.org/
+The unmodified Inno Setup compiler creates the Windows installer.
+Its original copyright and vendor notices are retained. The Inno Setup
+license permits use and distribution subject to its stated conditions;
+it does not require CanyonGlow's source code to use a copyleft license.
+Build-only Python packages are installed from requirements-build.txt and
+are not vendored into this source repository.
+
+Serial driver and manufacturer software
+--------------------------------------
+The Prolific driver and Intel NUC Software Studio are not bundled.
+The drivers directory contains download and Windows Update instructions.
+
+CanyonGlow icon
+---------------
+The current picture/CanyonGlow.ico is original geometric artwork created for
+CanyonGlow: canyon walls and three coloured light paths. It uses no product
+photographs, manufacturer logos or external artwork. Source artwork and the
+generator are available as picture/CanyonGlow.svg and make_icon.py in the
+source repository. The PNG, SVG, ICO and generator use CanyonGlow's MIT
+license.
