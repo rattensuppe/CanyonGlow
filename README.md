@@ -6,6 +6,8 @@ A graphical interface for control of the four RGB LED zones on the
 Intel NUC 11 Extreme (Beast Canyon) and NUC 12 Extreme (Dragon Canyon).
 Communication is handled directly via the serial interface of the embedded controller.
 
+**[Download & installation](#installation-and-startup-windows)**
+
 ---
 
 ## Supported Hardware
@@ -17,6 +19,9 @@ Communication is handled directly via the serial interface of the embedded contr
 
 Support is limited to these two model families. Other NUC models
 (such as NUC Mini, NUC Pro or NUC 13+) are not supported.
+
+**Hardware testing:** CanyonGlow has been tested only on a **NUC 11 Extreme**.
+Support for the **NUC 12 Extreme has not yet been verified on hardware**.
 
 ---
 
@@ -107,14 +112,25 @@ The release packages are intended for **Windows 10/11 (x64)**. Python and Python
 packages are bundled and do not need to be installed separately.
 Intel NUC Software Studio is not required.
 
+> **Hardware testing:** Tested only on a NUC 11 Extreme; NUC 12 Extreme is untested.
+>
+> **Use at your own risk.** To the extent permitted by applicable law, CanyonGlow
+> is provided without warranty and its authors are not liable for damage arising
+> from its use, including incorrect parameters or settings. See the [MIT license](LICENSE).
+
 For a new installation, setup defaults to English; German remains selectable.
 When updating, setup retains the previously used installation language.
 
-- **Setup:** run `CanyonGlow-v1.0-Setup-x64.exe`. Installation is per user, with
+- **[Download installer (.exe)](https://github.com/rattensuppe/CanyonGlow/releases/download/v1.0/CanyonGlow-v1.0-Setup-x64.exe):**
+  recommended for most users. Run `CanyonGlow-v1.0-Setup-x64.exe`. Installation is per user, with
   a Start Menu shortcut and an optional desktop shortcut.
-- **Portable:** fully extract `CanyonGlow-v1.0-Portable-x64.zip` and run
+- **[Download portable ZIP](https://github.com/rattensuppe/CanyonGlow/releases/download/v1.0/CanyonGlow-v1.0-Portable-x64.zip):**
+  no installation needed. Fully extract `CanyonGlow-v1.0-Portable-x64.zip` and run
   `CanyonGlow.exe` inside the `CanyonGlow` folder. Keep the whole folder together,
   including `_internal`; the EXE alone is not sufficient.
+
+[Checksums (SHA-256)](https://github.com/rattensuppe/CanyonGlow/releases/download/v1.0/CanyonGlow-v1.0-SHA256SUMS.txt)
+· [Release notes](https://github.com/rattensuppe/CanyonGlow/releases/tag/v1.0)
 
 The serial device driver must be installed. Instructions for Windows Update and
 the official Prolific download are in [drivers/README_EN.txt](drivers/README_EN.txt).
