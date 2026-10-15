@@ -109,4 +109,4 @@ Thanks to Alvin Zhu's [nuc_rgb](https://github.com/AlvinZhu/nuc_rgb) project
 for the serial-protocol reference.
 
 Created with assistance from [Claude Code](https://claude.ai/code) (Anthropic)
-and Codex (OpenAI).
+and [Codex](https://openai.com/codex/) (OpenAI).
