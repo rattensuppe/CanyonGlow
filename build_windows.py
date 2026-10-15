@@ -9,12 +9,15 @@ import json
 import os
 import re
 import shutil
+import ssl
 import struct
 import subprocess
 import sys
+import tkinter
+import zlib
 from importlib.metadata import distribution, version
 from pathlib import Path
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_DEFLATED, ZipFile, is_zipfile
 
 ROOT = Path(__file__).resolve().parent
 DIST = ROOT / "dist"
@@ -82,7 +85,50 @@ def write_version_info(release: str) -> Path:
     return path
 
 
-def copy_release_files() -> None:
+def runtime_versions() -> dict[str, str]:
+    window = tkinter.Tk()
+    window.withdraw()
+    try:
+        return {
+            "python": sys.version.split()[0],
+            "openssl": ssl.OPENSSL_VERSION,
+            "tcl": str(window.tk.call("info", "patchlevel")),
+            "tk": str(window.tk.call("package", "provide", "Tk")),
+            "zlib": zlib.ZLIB_RUNTIME_VERSION,
+        }
+    finally:
+        window.destroy()
+
+
+def embedded_tcl_data() -> list[str]:
+    """Collect official Tcl/Tk 9 script archives for PyInstaller's runtime hook."""
+    if tkinter.TclVersion < 9:
+        return []
+    destination = workspace_path(WORK / "embedded-tcl" / sys.version.split()[0])
+    found = set()
+    for library in (Path(sys.base_prefix) / "DLLs").glob("tcl*.dll"):
+        if not is_zipfile(library):
+            continue
+        with ZipFile(library) as archive:
+            for entry in archive.infolist():
+                parts = Path(entry.filename).parts
+                if not parts or parts[0] not in ("tcl_library", "tk_library"):
+                    continue
+                if ".." in parts or Path(entry.filename).is_absolute():
+                    raise RuntimeError("Unsafe path in the Tcl/Tk script archive")
+                target = workspace_path(destination.joinpath(*parts))
+                if not entry.is_dir():
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(archive.read(entry))
+                    found.add(parts[0])
+    if found != {"tcl_library", "tk_library"}:
+        raise RuntimeError("Could not locate both embedded Tcl/Tk script archives")
+    return [argument for directory, name in (("tcl_library", "_tcl_data"),
+                                             ("tk_library", "_tk_data"))
+            for argument in ("--add-data", f"{destination / directory};{name}")]
+
+
+def copy_release_files(runtime: dict[str, str] | None = None) -> None:
     for name in ("README_DE.md", "README_EN.md", "example_default_green_profile.json", "THIRD_PARTY_NOTICES.txt"):
         shutil.copy2(ROOT / name, workspace_path(BUNDLE / name))
     project_license = ROOT / "LICENSE"
@@ -100,8 +146,9 @@ def copy_release_files() -> None:
     python_root = Path(sys.base_prefix)
     for source, name in (
         (python_root / "LICENSE.txt", "Python-LICENSE.txt"),
-        (python_root / "tcl" / "tcl8.6" / "license.terms", "Tcl-LICENSE.txt"),
-        (python_root / "tcl" / "tk8.6" / "license.terms", "Tk-LICENSE.txt"),
+        (python_root / "tcl" / f"tcl{tkinter.TclVersion}" / "license.terms", "Tcl-LICENSE.txt"),
+        (python_root / "tcl" / f"tk{tkinter.TkVersion}" / "license.terms", "Tk-LICENSE.txt"),
+        (python_root / "tcl" / f"tk{tkinter.TkVersion}" / "demos" / "license.terms", "Tk-LICENSE.txt"),
     ):
         if source.is_file():
             shutil.copy2(source, workspace_path(licenses / name))
@@ -112,7 +159,10 @@ def copy_release_files() -> None:
                 source = Path(package_dist.locate_file(item))
                 if source.is_file():
                     shutil.copy2(source, workspace_path(licenses / f"{package}-{item.name}"))
-    notices = f"{APP_NAME} {app_version()[0]}\n\nBundled runtime components:\nPython, Tcl/Tk, pyserial, PyInstaller runtime.\n\n" + "\n".join(f"{name}=={version(name)}" for name in PACKAGES)
+    runtime = runtime or runtime_versions()
+    notices = f"{APP_NAME} {app_version()[0]}\n\nBundled runtime versions:\n" + "\n".join(
+        f"{name}: {value}" for name, value in runtime.items())
+    notices += "\n\nBuild packages:\n" + "\n".join(f"{name}=={version(name)}" for name in PACKAGES)
     workspace_path(BUNDLE / "BUILD_INFO.txt").write_text(notices + "\n", encoding="utf-8")
 
 
@@ -147,8 +197,9 @@ def main() -> int:
     if not ICON.is_file():
         raise RuntimeError(f"Application icon missing: {ICON}")
     environment = dict(os.environ, PYINSTALLER_CONFIG_DIR=str(WORK / "pyinstaller-cache"))
-    run([sys.executable, "-B", "-m", "PyInstaller", "--clean", "--noconfirm", "--onedir", "--noupx", "--windowed", "--name", APP_NAME, "--distpath", str(DIST), "--workpath", str(WORK / "pyinstaller"), "--specpath", str(WORK / "spec"), "--version-file", str(resource), "--icon", str(ICON), "--add-data", f"{ICON};picture", str(ROOT / "windows_launcher.py")], env=environment)
-    copy_release_files()
+    run([sys.executable, "-B", "-m", "PyInstaller", "--clean", "--noconfirm", "--onedir", "--noupx", "--windowed", "--name", APP_NAME, "--distpath", str(DIST), "--workpath", str(WORK / "pyinstaller"), "--specpath", str(WORK / "spec"), "--version-file", str(resource), "--icon", str(ICON), "--add-data", f"{ICON};picture", *embedded_tcl_data(), str(ROOT / "windows_launcher.py")], env=environment)
+    runtime = runtime_versions()
+    copy_release_files(runtime)
     report = None
     if not args.skip_smoke_test:
         report_path = workspace_path(WORK / "smoke-test.json")
@@ -170,7 +221,7 @@ def main() -> int:
         artifacts.append(setup)
     hashes = {str(path.relative_to(DIST)): hashlib.sha256(path.read_bytes()).hexdigest() for path in artifacts}
     workspace_path(DIST / f"{APP_NAME}-{tag}-SHA256SUMS.txt").write_text("".join(f"{digest}  {name}\n" for name, digest in hashes.items()), encoding="utf-8")
-    metadata = {"app_name": APP_NAME, "app_version": tag, "file_version": release, "python": sys.version.split()[0], "packages": {name: version(name) for name in PACKAGES}, "source_sha256": hashlib.sha256((ROOT / "canyonglow.py").read_bytes()).hexdigest(), "smoke_test": report, "sha256": hashes, "signed": False}
+    metadata = {"app_name": APP_NAME, "app_version": tag, "file_version": release, "python": sys.version.split()[0], "runtime": runtime, "packages": {name: version(name) for name in PACKAGES}, "source_sha256": hashlib.sha256((ROOT / "canyonglow.py").read_bytes()).hexdigest(), "smoke_test": report, "sha256": hashes, "signed": False}
     workspace_path(WORK / "release-info.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     for artifact in artifacts:
         print(f"Created: {artifact}")

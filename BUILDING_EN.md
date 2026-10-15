@@ -19,8 +19,13 @@ python canyonglow.py
 The build machine needs **64-bit Python with Tkinter**, the packages listed in
 `requirements-build.txt`, and **Inno Setup 6.3 or newer**:
 
+The current Windows packages use **Python 3.14.8 (x64), Tcl/Tk 9.0.4,
+OpenSSL 3.5.9, PyInstaller 6.21.0 and Inno Setup 7.1.0**. Use the regular
+GIL-enabled Python build. Runtime versions are recorded in the packaged
+`BUILD_INFO.txt` and local `build\windows-release\release-info.json`.
+
 ```bat
-py -3 -m venv .venv-build
+py -3.14 -m venv .venv-build
 .venv-build\Scripts\python.exe -m pip install -r requirements-build.txt
 build_windows.bat
 ```

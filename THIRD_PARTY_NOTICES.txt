@@ -21,36 +21,36 @@ License: BSD-3-Clause.
 Full notice: licenses/pyserial-LICENSE.txt
 Used for communication with the serial controller.
 
-Python 3.12.10 and the bundled native runtime
+Python 3.14.8 and the bundled native runtime
 -------------------------------------------
 Project: https://www.python.org/
 The Windows packages contain the unmodified Python runtime and selected
 standard-library modules. licenses/Python-LICENSE.txt in the release packages
 is the combined license file from the official Windows Python distribution.
 It includes the PSF and historical Python licenses, Microsoft redistribution
-terms, bzip2 and libffi notices, Apache 2.0 text, and Tcl/Tk-related notices.
+terms, bzip2, libffi and Zstandard notices, Apache 2.0 text, and Tcl/Tk notices.
 Bundled Microsoft runtime files retain their original notices and are used
 on Windows only; they are not relicensed as CanyonGlow source code.
 
-Tcl/Tk 8.6.15
+Tcl/Tk 9.0.4
 -------------
 Projects: https://www.tcl-lang.org/ and https://github.com/tcltk/tcl
 Permissive Tcl/Tk license terms apply; preserve the original notices.
-The complete notices are included in licenses/Python-LICENSE.txt in release
-packages; the Tk notice is also present as licenses/Tk-LICENSE.txt.
+Full notices: licenses/Tcl-LICENSE.txt and licenses/Tk-LICENSE.txt.
 
-OpenSSL 3.0.16 / libcrypto
+OpenSSL 3.5.9 / libcrypto
 -------------------------
-Project: https://github.com/openssl/openssl/tree/openssl-3.0.16
-License: Apache-2.0. The Apache license text is included in the combined
-licenses/Python-LICENSE.txt distributed with the Windows release.
+Project: https://github.com/openssl/openssl/tree/openssl-3.5.9
+License: Apache-2.0. Full text: licenses/OpenSSL-LICENSE.txt.
 The OpenSSL binary retains its original copyright metadata.
 
-zlib 1.3.1
+zlib 1.3.2 and zlib-ng 2.2.4
 ----------
-Project: https://github.com/madler/zlib/tree/v1.3.1
-License: zlib. Full notice: licenses/zlib-LICENSE.txt.
-The unmodified zlib DLL is part of the Tcl/Tk runtime.
+Projects: https://github.com/madler/zlib/tree/v1.3.2 and
+https://github.com/zlib-ng/zlib-ng/tree/2.2.4
+License: zlib. Full notices: licenses/zlib-LICENSE.txt and
+licenses/zlib-ng-LICENSE.txt. The unmodified zlib DLL is part of Tcl/Tk;
+Python uses zlib-ng in compatibility mode (reported as 1.3.1.zlib-ng).
 
 PyInstaller 6.21.0
 -----------------

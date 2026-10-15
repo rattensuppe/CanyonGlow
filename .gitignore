@@ -31,6 +31,10 @@ licenses/*
 !licenses/pyserial-LICENSE.txt
 !licenses/nuc_rgb-LICENSE.txt
 !licenses/zlib-LICENSE.txt
+!licenses/zlib-ng-LICENSE.txt
+!licenses/OpenSSL-LICENSE.txt
+!licenses/Tcl-LICENSE.txt
+!licenses/Tk-LICENSE.txt
 !picture/
 picture/*
 !picture/CanyonGlow.ico
